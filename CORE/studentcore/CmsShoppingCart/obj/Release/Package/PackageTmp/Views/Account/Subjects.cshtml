@@ -1,0 +1,99 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Subject>
+
+@{
+    ViewBag.Title = "Subjects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    body {
+        background-color: lightgray;
+    }
+
+    .rectangle {
+        background-color: darkgrey;
+    }
+
+    .categ {
+        width: 200px;
+        background-color: red;
+    }
+
+    .rectitle {
+        background-color: darkgoldenrod;
+    }
+
+    .button {
+        background-color: black; /* Green */
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 100px;
+    }
+
+        .button:hover {
+            background-color: black;
+        }
+
+
+    .button1 {
+        font-size: 10px;
+    }
+</style>
+</head>
+<div class="rectangle" style="margin-top:-8px; margin-left:50px;padding-right:12px;color:white;">
+    <div style="height:400px; background-color:gray;overflow:auto;margin-left:10px">
+
+        <h2>Subjects</h2>
+        @if (TempData["Success Message"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Success Message"]
+            </div>
+        }
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NAME)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NAME)
+                    </td>
+                    <td>
+                        @Html.ActionLink("ADD TO MATRIC", "ADDTOMATRIC", new { id = item.Id }, new { @class = "btn btn-success" }) |
+
+                        @Html.ActionLink("REMOVE FROM MATRIC", "REMOVEONMATRIC", new { name = item.NAME }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+
+            }
+
+        </table>
+    </div>
+
+    <hr />
+    <div align="right">
+        <h4>TOTAL POINTS :@ViewBag.Points PTS</h4>
+    </div>
+    <div style="margin-top:-30px">
+        <h4>MY MATRIC</h4>
+    </div>
+
+    <br />
+    @Html.Action("MyMatric", "Account")
+</div>

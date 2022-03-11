@@ -1,0 +1,26 @@
+﻿@model CmsShoppingCart.Models.Data.Grade
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-error">
+        @TempData["Error"]
+    </div>
+}
+@{
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+    ViewBag.Title = "GRADE DETAILS";
+}
+
+@Html.Action("AssignClassTeacher","Admin")
+
+@Html.Action("Subjects","Grades")
+ 
+
+
+@Html.Action("Gradesubjects","Grades")
+

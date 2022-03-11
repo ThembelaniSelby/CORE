@@ -1,0 +1,43 @@
+﻿@model CmsShoppingCart.Models.Data.ClassTVM
+
+@{
+    Layout = null;
+}
+
+<h2>Assign Class Teacher</h2>
+
+@using (Html.BeginForm("AssignClassTeacher","Admin",FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">Grade:</label>
+            <div class="col-md-10">
+                <input type="number" value="@TempData["id"]" name="GradeNumber" readonly class="form-control"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">Teacher</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Id, Model.GradeTeachers, "Select Teacher", new { @class = "form-control" })
+
+                @Html.ValidationMessage("Please Select a Teacher", new { @class = "text-danger" })
+            </div>
+        </div>
+
+      
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ASSIGN CLASS TEACHER" class="btn btn-warning" />
+            </div>
+        </div>
+    </div>
+}
+

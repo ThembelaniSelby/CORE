@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Subject>
+@{ 
+    Layout = null;
+}
+<h1>
+    ALL SUBJECTS
+</h1>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Name(LOWER)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameFix)
+        </td>
+        
+        <td>
+            @Html.ActionLink("ADD TO GRADE", "SubAddtograde", new { subid = item.Id , id =TempData["id"]},new {@class="btn btn-success" } ) 
+        </td>
+    </tr>
+}
+
+</table>

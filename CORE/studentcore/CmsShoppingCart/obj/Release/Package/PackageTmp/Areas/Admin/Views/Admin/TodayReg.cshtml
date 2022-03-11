@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Attendance>
+
+@{
+    ViewBag.Title = "TodayReg";
+    Layout = null;
+}
+
+<h2>TodayReg</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Attendancee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChildId)
+        </th>
+        <th>
+           Child Name
+        </th>
+        <th>
+            Child IdNumber
+        </th>
+        <th>
+
+        </th>
+
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Attendancee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChildId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChildName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChildIdNumber)
+        </td>
+        <td>
+            @using (Html.BeginForm("Remove", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="number" name="id" value="@item.Id" hidden />
+                <input type="submit" value="REMOVE" class="btn btn-danger" />
+            }
+
+        </td>
+    </tr>
+}
+
+</table>

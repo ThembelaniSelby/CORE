@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.QuestionAndAnswers>
+
+@{
+    Layout = null;
+}
+
+
+<h2>Assessment Questions</h2>
+
+<table class="table">
+    <tr>
+
+        <th>
+            Question
+        </th>
+        <th>
+            Posible Aswers
+        </th>
+        <th>
+            Mark
+        </th>
+
+        <th>
+            Status
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Question)
+            </td>
+
+            <td>
+                @foreach (var item2 in item.ProductsAndQty)
+                {
+                    @item2.Key <br /> 
+
+                }
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </th>
+            <th>
+                
+                @foreach (var item2 in item.ProductsAndQty)
+                {
+                    if (item2.Value == "INCORRECT")
+                    {
+                        <div style="color:red">
+                           @item2.Value ❌ <br />
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div style="color:green">
+                            @item2.Value ✔ <br />
+                        </div>
+                    }
+                }
+            </th>
+
+        </tr>
+    }
+</table>
+
+
+

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Attendance>
+
+@{
+                /**/
+
+ ViewBag.Title = "CreateRegister"; Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<div style="margin-left:20px">
+    <a href="/Admin/Admin/SignReg" class=" btn btn-success">SIGN REGISTER</a>
+
+    @Html.Action("TodayReg", "Admin")
+
+</div>

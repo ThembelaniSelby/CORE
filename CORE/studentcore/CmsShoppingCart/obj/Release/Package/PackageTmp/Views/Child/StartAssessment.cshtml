@@ -1,0 +1,183 @@
+﻿@model PagedList.IPagedList<CmsShoppingCart.Models.Data.QuestionAndAnswers>
+@using PagedList.Mvc
+@{
+
+}
+@using PagedList;
+
+
+@Html.Action("AssessmentSession", "Child")
+
+
+<div align="center" style="color:red">
+    <h6>
+        PLEASE NOTE THIS ASSESSMENT IS MONITERED(DONT CLOSE TAB OR MOVE YOUR CUSOUR OUT OF WRITING WINDOW)
+    </h6>
+</div>
+
+<div id="test" style="width:100%;height:450px;color:white;background-color:black">
+
+
+
+
+    <table class="table">
+        <tr>
+
+            <th>
+                Question
+            </th>
+            <th>
+                Posible Aswers
+            </th>
+            <th>
+                Mark
+            </th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Question)
+                </td>
+
+                <td>
+                    @foreach (var item2 in item.ProductsAndQty.Skip(1))
+                    {
+                        <input type="radio" name="anss" id="answer" value="qid=@item.QuestionId.ToString()&answer=@item2.Key">
+                        @item2.Key <br />
+
+                    }
+                    @foreach (var item2 in item.ProductsAndQty.Take(1))
+                    {
+                        <input type="radio" name="anss" id="answer2" value="qid=@item.QuestionId.ToString()&answer=@item2.Key">
+                        @item2.Key <br />
+
+                    }
+                </td>
+                <th>
+                    @Html.DisplayFor(modelItem => item.Mark)
+                </th>
+
+
+            </tr>
+        }
+    </table>
+    <div align="center" id="fst" style="color:white;display:none">
+        <h4>
+            ANSWER SAVED
+        </h4>
+    </div>
+
+    <div align="center" id="fst1" style="color:white;display:none">
+        <h4>
+            STOP CHEATING
+        </h4>
+    </div>
+
+    <div align="center">
+
+        @Html.PagedListPager(Model, page => Url.Action("StartAssessment", new { page, id = ViewBag.Id }))
+
+        <input type="submit" id="submitassessment" value="SUBMIT ASSESSMENT" class="btn btn-warning" />
+
+    </div>
+
+
+
+</div>
+<hr />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    var counter = 0;
+
+    $(document).ready(function () {
+        $("#test").mouseenter(function () {
+            $('#fst1').hide()
+            $("#test").css("background-color", "darkblue");
+        });
+        $("#test").mouseleave(function () {
+            $("#test").css("background-color", "red");
+            $('#fst1').show();
+
+            if (counter > 3) {
+                window.location.replace("/child/submitassessment?status=cheated&aid=@ViewBag.Id");
+            }
+            counter++;
+              
+
+        });
+
+        var ans = $("#answer").val();
+
+
+        var ans2 = $("#answer2").val();
+
+
+        var url1 = "/Child/SaveLearnerQuestionAnswer?" + ans;
+
+        var url2 = "/Child/SaveLearnerQuestionAnswer?" + ans2;
+
+
+
+
+
+
+
+        $("#answer").change(function () {
+            $.post(url1, {}, function (data) {
+
+            }).done(function (data) {
+
+                $('#fst').show();
+                setTimeout(function () { $('#fst').hide(); }, 2000);
+
+            });
+
+        });
+
+        $("#answer2").change(function () {
+
+            $.post(url2, {}, function (data) {
+
+            }).done(function (data) {
+                $('#fst').show();
+                setTimeout(function () { $('#fst').hide(); }, 2000);
+            });
+
+        });
+
+        $("#submitassessment").click(function () {
+
+            window.location.replace("/child/submitassessment?aid=@ViewBag.Id&status=ASSESSMENT SUBMITED");
+
+        });
+
+        //var ans = $("#answer").val();
+
+        //var ans2 = $("#answer2").val();
+
+
+        //var url1 = "/Child/SaveLearnerQuestionAnswer?" + ans
+
+        //var url2 = "/Child/SaveLearnerQuestionAnswer?" + ans2
+
+
+        //$("#answer").change(function () {
+        //    alert("Answer 1 saved");
+        //    window.location.replace(url1);
+        //});
+
+
+        //$("#answer2").change(function () {
+        //    alert("Answer 2 saved");
+        //    window.location.replace(url2);
+
+        //});
+
+
+
+
+    });
+</script>

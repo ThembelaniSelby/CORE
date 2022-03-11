@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CmsShoppingCartModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Slug" Type="varchar" MaxLength="50" />
+    <Property Name="Sorting" Type="int" />
+  </EntityType>
+  <EntityType Name="tblComments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Comment" Type="varchar" MaxLength="8000" Nullable="false" />
+    <Property Name="Sorting" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblOrderDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="tblOrders">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+    <Property Name="Destination" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="tblPages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="50" />
+    <Property Name="Slug" Type="varchar" MaxLength="50" />
+    <Property Name="Body" Type="varchar(max)" />
+    <Property Name="Sorting" Type="int" />
+    <Property Name="HasSidebar" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblProducts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Slug" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Price" Type="numeric" Precision="18" Scale="2" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="50" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="ImageName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblReply">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Reply" Type="varchar(max)" Nullable="false" />
+    <Property Name="CommentId" Type="int" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblSidebar">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Body" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="tblStaffs">
+    <Key>
+      <PropertyRef Name="StaffId" />
+    </Key>
+    <Property Name="StaffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Confirm" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="StaffRole" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTrip">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderId" Type="int" Nullable="false" />
+    <Property Name="TruckId" Type="int" Nullable="false" />
+    <Property Name="Drivers" Type="int" Nullable="false" />
+    <Property Name="Stock_Controller" Type="int" />
+    <Property Name="CreatedAt" Type="datetime" Nullable="false" />
+    <Property Name="Destination" Type="varchar(max)" />
+    <Property Name="Controller" Type="varchar(max)" />
+    <Property Name="DriverName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblTrucks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NumberPlate" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Dimention" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+    <Property Name="Username" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="CmsShoppingCartModelStoreContainer">
+    <EntitySet Name="tblCategories" EntityType="Self.tblCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblComments" EntityType="Self.tblComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOrderDetails" EntityType="Self.tblOrderDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblOrders" EntityType="Self.tblOrders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPages" EntityType="Self.tblPages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblReply" EntityType="Self.tblReply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRoles" EntityType="Self.tblRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSidebar" EntityType="Self.tblSidebar" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStaffs" EntityType="Self.tblStaffs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTrip" EntityType="Self.tblTrip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTrucks" EntityType="Self.tblTrucks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserRoles" EntityType="Self.tblUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

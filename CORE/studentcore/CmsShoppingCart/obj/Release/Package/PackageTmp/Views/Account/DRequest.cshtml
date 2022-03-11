@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Deregister>
+
+@{
+    ViewBag.Title = "DRequest";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LearnerEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LearnerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pemail)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LearnerEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+     
+        <td>
+            @Html.DisplayFor(modelItem => item.Reason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LearnerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pemail)
+        </td>
+     
+    </tr>
+}
+
+</table>

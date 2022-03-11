@@ -1,0 +1,87 @@
+﻿@model CmsShoppingCart.Models.Data.Content
+
+@{
+    ViewBag.Title = "UploadContent"; Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div>
+
+    <h2>UploadContent</h2>
+
+    @using (Html.BeginForm("UploadContent", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Content</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Grade, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="number" min=1 max=12 name="Grade" value=1 class="form-control" />
+                @Html.ValidationMessageFor(model => model.Grade, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select id="size" name="Subject" style="width:135px; height:35px">
+                    <option value="0">SELECT SUBJECT</option>
+                    @foreach (var item in ViewBag.Subjects)
+                    {
+                        if (ViewBag.SelectedCat == item.Name)
+                        {
+                            <option selected="selected" value="@item.Id">@item.Name</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.Name</option>
+
+                        }
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VideoLesson,"CONTENT FILE", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="VideoLesson" required />
+                @Html.ValidationMessageFor(model => model.VideoLesson, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+       
+
+
+
+        <div class="form-group">
+            @Html.Label("CONTENT TYPE", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <select name="type" id="type" class="form-control" style="width:135px">
+                    <option value="VIDEO">VIDIO</option>
+                    <option value="PHOTO">PHOTO</option>
+                    <option value="DOCUMENT">DOCUMENT</option>
+                    <option value="QUIZ">QUIZ</option>
+                    <option value="HOMEWORK">HOMEWORK</option>
+                </select>
+               
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="SUBMIT" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+</div>

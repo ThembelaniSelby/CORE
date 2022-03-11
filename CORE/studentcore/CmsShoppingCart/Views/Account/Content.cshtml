@@ -1,0 +1,108 @@
+﻿@model CmsShoppingCart.Models.ViewModels.Account.ContentVM
+
+@{
+    ViewBag.Title = "Contents";
+}
+@using PagedList.Mvc;
+@using PagedList;
+<div style="margin-left:20px">
+    <body>
+
+        <div align="left" style="margin-left:25px;">
+            <select id="SelectCategory" name="SelectCategory" style="width:135px; height:35px">
+                <option value="0">All</option>
+                @foreach (var item in ViewBag.Categories)
+                {
+                    if (ViewBag.SelectedCat == item.Value)
+                    {
+                        <option selected="selected" value="@item.Value">@item.Text</option>
+                    }
+                    else
+                    {
+                        <option value="@item.Value">@item.Text</option>
+
+                    }
+                }
+            </select>
+
+
+            <hr />
+        </div>
+
+
+
+        @foreach (var image in Model.GalleryImages)
+        {
+            <div class="scroll" style="display:inline-block">
+
+                @if (image.ToString().Contains(".pdf") == true)
+                {
+                    <a href="/Images/Content/@image">
+                        <div align="center">
+                            <img src="~/Images/pdficon.png" style="width:200px; height:200px;" frameborder="0" allowfullscreen>
+                            <br />
+                            @image
+                        </div>
+
+                    </a>
+                }
+                else
+                {
+                    <a href="/Images/Content/@image">
+                        <div align="center">
+                            <img src="/Images/Content/@image" style="width:200px; height:200px;" frameborder="0" allowfullscreen>
+                            <br />
+                            @image
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+
+        @Html.PagedListPager((IPagedList)ViewBag.OnePageOfProducts, page => Url.Action("Content", new { page, catId = ViewBag.SelectedCat }))
+
+        @section Scripts{
+
+            <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+            <script>
+                $(function () {
+
+
+
+                    /*
+                   Select Product From Specified Category
+                   */
+
+                    $("#SelectCategory").on("change", function () {
+
+                        var url = $(this).val();
+                        if (url) {
+                            window.location = "/Account/Content/Products?catId=" + url;
+                        }
+
+                        return false;
+                    });
+
+                    ///////////////////////////////////
+
+
+
+                    /*
+                   confirm Product deletion
+                   */
+                    $("a.delete").click(function () {
+                        if (!confirm("Confirm Product Deletion")) return false;
+                    });
+
+                    ///////////////////////////////////
+
+                });
+
+
+
+            </script>
+        }
+
+    </body>
+</div>
+

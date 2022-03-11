@@ -1,0 +1,111 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.ViewModels.Account.UserVM>
+
+@{
+    ViewBag.Title = "Teachers"; Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-error">
+        @TempData["Error"]
+    </div>
+}
+<h2>Teachers</h2>
+
+<p>
+    <a href="/admin/Admin/addteacher" class="btn btn-success">ADD NEW TEACHER</a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdNumb)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.HomeLang)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostalAd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeAd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HomeNumber)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdNumb)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeLang)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostalAd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeAd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HomeNumber)
+        </td>
+     
+    </tr>
+}
+
+</table>

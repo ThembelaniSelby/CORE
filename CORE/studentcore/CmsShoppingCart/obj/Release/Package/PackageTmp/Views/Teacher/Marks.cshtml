@@ -1,0 +1,102 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.StudentAssessmentSession>
+
+@{
+    ViewBag.Title = "Marks";
+}
+
+<h2>Marks</h2>
+
+
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.Start)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.End)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GradeNumber)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.TeacherName)
+        </th>
+       
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Question)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentAnswer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectAnswer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CorrectOrWrong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LearnerName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Subject)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Start)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.End)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GradeNumber)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.TeacherName)
+        </td>
+     
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Question)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentAnswer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorrectAnswer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorrectOrWrong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LearnerName)
+        </td>
+       </tr>
+}
+
+</table>

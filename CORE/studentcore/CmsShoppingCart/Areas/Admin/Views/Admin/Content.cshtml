@@ -1,0 +1,38 @@
+﻿@model CmsShoppingCart.Models.ViewModels.Account.ContentVM
+
+@{
+    ViewBag.Title = "Contents";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div style="margin-left:20px">
+    <body>
+        @foreach (var image in Model.GalleryImages)
+        {
+            <div class="scroll" style="display:inline-block">
+
+                @if (image.ToString().Contains(".pdf") == true)
+                {
+                    <a href="/Images/Content/@image">
+                        <div align="center">
+                            <img src="~/Images/pdficon.png" style="width:200px; height:200px;" frameborder="0" allowfullscreen>
+                            <br />
+                            @image
+                        </div>
+
+                    </a>
+                }
+                else
+                {
+                    <a href="/Images/Content/@image">
+                        <div align="center">
+                            <img src="/Images/Content/@image" style="width:200px; height:200px;" frameborder="0" allowfullscreen>
+                            <br />
+                            @image
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+    </body>
+</div>

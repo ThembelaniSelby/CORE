@@ -1,0 +1,86 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Fee>
+
+@{
+    ViewBag.Title = "Fees"; Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div style="margin-left:20px">
+
+    <h2>Fees</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AdminFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AfterHourFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UniformFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StationaryFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Event_sportFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Feeding_schemeFee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OneWayDiv)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TwoWayDiv)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @using (Html.BeginForm("UpdateFee", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <td>
+                        <input type="number" value="@item.AdminFee" class="form-control" name="AdminFee" style="width:100%" />
+                    </td>
+                    <td>
+                        <input type="number" value="@item.AfterHourFee" class="form-control" name="AfterHourFee" style="width:100%" />
+
+                    </td>
+                    <td>
+                        <input type="number" value="@item.UniformFee" class="form-control" name="UniformFee" style="width:100%" />
+
+                    </td>
+                    <td>
+                        <input type="number" value="@item.StationaryFee" class="form-control" name="StationaryFee" style="width:100%" />
+
+                    </td>
+                    <td>
+                        <input type="number" value="@item.Event_sportFee" class="form-control" name="Event_sportFee" style="width:100%" />
+
+                    </td>
+                    <td>
+                        <input type="number" value="@item.Feeding_schemeFee" class="form-control" name="Feeding_schemeFee" style="width:100%" />
+
+                    </td>
+                    <td>
+                        <input type="number" value="@item.OneWayDiv" class="form-control" name="OneWayDiv" style="width:100%" />
+
+                    </td>
+                    <td>
+                        <input type="number" value="@item.TwoWayDiv" class="form-control" name="TwoWayDiv" style="width:100%" />
+
+                    </td>
+                    <td>
+                        @Html.ActionLink("UPDATE", "UpdateFee", new { id = item.Id }, new { @class = "btn btn-success" })
+                    </td>
+                }
+
+            </tr>
+        }
+
+    </table>
+    </div>

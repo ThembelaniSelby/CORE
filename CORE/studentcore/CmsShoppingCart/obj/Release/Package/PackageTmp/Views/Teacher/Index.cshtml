@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div style="height:300px" align="center">
+    <h2>TEACHER PORTAL</h2>
+    <br />
+    <br />
+    <a href="/teacher/calender" class="btn btn-success">MY CALENDER</a>
+    <a href="/teacher/deciplinary" class="btn btn-success">DECIPLINARY STUDENTS</a>
+
+    <br />
+
+    @Html.Action("MySubjects", "Teacher")
+</div>

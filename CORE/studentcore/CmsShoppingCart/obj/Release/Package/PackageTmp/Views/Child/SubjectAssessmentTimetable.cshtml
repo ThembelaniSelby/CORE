@@ -1,0 +1,286 @@
+﻿@model CmsShoppingCart.Models.Data.AssessmentEvent
+
+@{
+    ViewBag.Title = "My Calender";
+}
+
+<h2>SUBJECT ASSESSMENT CALENDER</h2>
+<div align="right" style="margin-top:-50px;color:red">
+    <h2 id="clock"></h2>
+</div>
+
+<div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            setInterval('updateClock()', 1000);
+        });
+
+        function updateClock() {
+            var currentTime = new Date();
+            var currentHours = currentTime.getHours();
+            var currentMinutes = currentTime.getMinutes();
+            var currentSeconds = currentTime.getSeconds();
+
+            // Pad the minutes and seconds with leading zeros, if required
+            currentMinutes = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+            currentSeconds = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+
+            // Choose either "AM" or "PM" as appropriate
+            var timeOfDay = (currentHours < 12) ? "AM" : "PM";
+
+            // Convert the hours component to 12-hour format if needed
+            currentHours = (currentHours > 12) ? currentHours - 12 : currentHours;
+
+            // Convert an hours component of "0" to "12"
+            currentHours = (currentHours == 0) ? 12 : currentHours;
+
+            // Compose the string for display
+            var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+
+
+            $("#clock").html(currentTimeString);
+        }
+    </script>
+</div>
+
+@if (Model != null)
+{
+    <div id="calender"></div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="pDetails"></p>
+                </div>
+                <div class="modal-footer">
+                    <div id="attend" align="right"></div>
+                    <div style="position:absolute;margin-top:-30px">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+
+    @section Scripts{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
+        <script>
+
+
+        $(document).ready(function () {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                url: "/Child/GetSubjectAssessmentEvents?eventid="+@Model.EventID,
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            title: v.Subject,
+                            description: v.Description,
+                            start: moment(v.Start),
+                            end: v.End != null ? moment(v.End) : null,
+                            color: v.ThemeColor,
+                            allDay: v.IsFullDay,
+                            link: v.link
+                        });
+                    })
+
+                    GenerateCalender(events);
+                },
+                error: function (error) {
+                    alert('TIME TABLE IS EMPTY');
+                }
+            })
+
+            function GenerateCalender(events) {
+                $('#calender').fullCalendar('destroy');
+                $('#calender').fullCalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay,agenda'
+                    },
+                    eventLimit: true,
+                    eventColor: '#378006',
+                    events: events,
+                    eventClick: function (calEvent, jsEvent, view) {
+                         var dt = new Date();
+                        var time = dt.getUTCDate() + "-" + dt.getUTCMonth() + "-" + dt.getUTCFullYear() + " " + dt.getUTCHours() + ":" + dt.getUTCMinutes() + ":" + dt.getUTCSeconds();
+
+                        var now = calEvent.start;
+                        var eend = calEvent.end;
+
+                        var eventdate = new Date(now);
+                        var eventend = new Date(eend);
+
+                        var currentdate = new Date();
+
+                        if (eventdate > currentdate && eventend > currentdate) {
+
+                            $('#myModal #eventTitle').text(calEvent.title);
+                            var $description = $('<div/>');
+                            $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+
+                            if (calEvent.end != null) {
+                                $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                            }
+
+                            $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                            $('#myModal #pDetails').empty().html($description);
+
+                            $('#myModal').modal();
+                        }
+                        if (eventdate < currentdate && eventend > currentdate) {
+                            $('#myModal #attend').html("<a class='btn btn-success' href='" + "/child/StartAssessment?page=1&id=" + calEvent.link + "'>START ASSESSMENT</a > ");
+                            $('#myModal #eventTitle').text(calEvent.title);
+                            var $description = $('<div/>');
+                            $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+
+                            if (calEvent.end != null) {
+                                $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                            }
+
+                            $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                            $('#myModal #pDetails').empty().html($description);
+
+                            $('#myModal').modal();
+                        }
+
+                        else {
+                            $('#myModal #eventTitle').text(calEvent.title);
+                            var $description = $('<div/>');
+                            $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+
+                            if (calEvent.end != null) {
+                                $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                            }
+
+                            $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                            $('#myModal #pDetails').empty().html($description);
+
+                            $('#myModal').modal();
+                        }
+
+
+
+                    }
+                })
+            }
+        })
+</script>
+    }
+}
+
+else
+{
+    <div id="calender"></div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"><span id="eventTitle"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <p id="pDetails"></p>
+                </div>
+                <div class="modal-footer">
+                    <div id="attend" align="right"></div>
+                    <div style="position:absolute;margin-top:-30px">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+
+    @section Scripts{
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+
+        <script>
+
+
+            $(document).ready(function () {
+                var events = [];
+                $.ajax({
+                    type: "GET",
+                    url: "/Child/GetSubjectEventsyy",
+                    success: function (data) {
+                        $.each(data, function (i, v) {
+                            events.push({
+                                title: v.Subject,
+                                description: v.Description,
+                                start: moment(v.Start),
+                                end: v.End != null ? moment(v.End) : null,
+                                color: v.ThemeColor,
+                                allDay: v.IsFullDay,
+                                link: v.link
+                            });
+                        })
+
+                        GenerateCalender(events);
+                    },
+                    error: function (error) {
+                        alert('SUBJECT ASSESSMENT CALENDER IS EMPTY');
+                    }
+                })
+
+                function GenerateCalender(events) {
+                    $('#calender').fullCalendar('destroy');
+                    $('#calender').fullCalendar({
+                        contentHeight: 400,
+                        defaultDate: new Date(),
+                        timeFormat: 'h(:mm)a',
+                        header: {
+                            left: 'prev,next today',
+                            center: 'title',
+                            right: 'month,basicWeek,basicDay,agenda'
+                        },
+                        eventLimit: true,
+                        eventColor: '#378006',
+                        events: events,
+                        eventClick: function (calEvent, jsEvent, view) {
+                            $('#myModal #attend').html("<a class='btn btn-success' href='" + "/child/StartAssessment?page=1&id=" + calEvent.link + "'>START ASSESSMENT</a > ");
+                            $('#myModal #eventTitle').text(calEvent.title);
+                            var $description = $('<div/>');
+                            $description.append($('<p/>').html('<b>Start:</b>' + calEvent.start.format("DD-MMM-YYYY HH:mm a")));
+                            if (calEvent.end != null) {
+                                $description.append($('<p/>').html('<b>End:</b>' + calEvent.end.format("DD-MMM-YYYY HH:mm a")));
+                            }
+                            $description.append($('<p/>').html('<b>Description:</b>' + calEvent.description));
+                            $('#myModal #pDetails').empty().html($description);
+
+                            $('#myModal').modal();
+                        }
+                    })
+                }
+            })
+        </script>
+    }
+
+}
+
+

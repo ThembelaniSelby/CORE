@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "CreateTimetable"; Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-error">
+        @TempData["Error"]
+    </div>
+}
+<div align="left" style="position:absolute">
+    <input type="button" class="btn btn-success" id="print" value="PRINT TIMETABLE">
+</div>
+<div align="right">
+    <a href="/admin/Admin/EmailTimeTable?gradeid=@ViewBag.Grade" class="btn btn-success">EMAIL TIMETABLE</a>
+</div>
+
+<div id="toprint" align="center" >
+    <h2>GRADE @ViewBag.Grade TIMETABLE</h2>
+
+    <div class="scroll">
+        @Html.Action("Slot1", "Admin")
+        @Html.Action("Slot1f", "Admin")
+    </div>
+    <div class="scroll">
+        @Html.Action("Slot2", "Admin")
+        @Html.Action("Slot2f", "Admin")
+    </div>
+    <div class="scroll">
+        @Html.Action("Slot3", "Admin")
+        @Html.Action("Slot3f", "Admin")
+    </div>
+    <div class="scroll">
+        @Html.Action("Slot4", "Admin")
+        @Html.Action("Slot4f", "Admin")
+    </div>
+    <div class="scroll">
+        @Html.Action("Slot5", "Admin")
+        @Html.Action("Slot5f", "Admin")
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+
+
+
+<script>
+            $("#print").click(function () {
+
+                var printButton = document.getElementById("print");
+
+                //Set the print button visibility to 'hidden'
+                printButton.style.visibility = 'hidden';
+
+
+
+
+                var css = '<link rel="stylesheet" href="https://2021grp16.azurewebsites.net//Content/Site.css" />';
+                var printContent = document.getElementById("toprint");
+
+                var WinPrint = window.open('', '', 'width=5961,height=3508');
+                WinPrint.document.write(printContent.innerHTML);
+                WinPrint.document.head.innerHTML = css;
+                WinPrint.document.close();
+                WinPrint.focus();
+                WinPrint.print();
+                printButton.style.visibility = 'visible';
+
+                setTimeout(function () {
+                    WinPrint.close();
+                }, 3000);
+
+                return false;
+
+            });
+
+</script>

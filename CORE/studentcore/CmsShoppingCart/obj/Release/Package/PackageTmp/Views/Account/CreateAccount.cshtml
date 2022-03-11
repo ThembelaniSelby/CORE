@@ -1,0 +1,188 @@
+﻿@model CmsShoppingCart.Models.ViewModels.Account.UserVM
+@{
+    ViewBag.Title = "Create Account";
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        body {
+            background-color:lightgray;
+        }
+
+        .rectangle {
+            background-color: darkgrey;
+        }
+
+        .categ {
+            width: 200px;
+            background-color: red;
+        }
+
+        .rectitle {
+            background-color: darkgoldenrod;
+        }
+
+        .button {
+            background-color: black; /* Green */
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 100px;
+        }
+
+            .button:hover {
+                background-color: black;
+            }
+
+
+        .button1 {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<div class="rectangle" style="margin-top:-8px; margin-left:50px;padding-right:12px;color:white;">
+    <h2>Create Account</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">First Name(s)</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">Last Name</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">Email</label>
+            <div class="col-md-10">
+                <input type="email" name="EmailAddress" class="form-control" />
+                @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">Phone Number</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">Id Number</label>
+            <div class="col-md-10">
+                <input type="number" maxlength="13" name="IdNumb" minlength="8" class="form-control" />
+                @Html.ValidationMessageFor(model => model.IdNumb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">Password</label>
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">Confirm Password</label>
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Maritual, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="radio" id="male" name="Maritual" value="SINGLE" />
+                        <label for="male">SINGLE</label>
+                        <input type="radio" id="female" name="Maritual" value="MARRIED" />
+                        <label for="female">MARRIED</label>
+                    </div>
+                </div>
+
+                @Html.ValidationMessageFor(model => model.Maritual, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HomeLang, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HomeLang, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HomeLang, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PostalAd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="add" placeholder="Address" class="form-control" style="width:50%" />
+                <input type="text" name="city" placeholder="City" class="form-control" style="width:50%" />
+                <input type="text" name="prov" placeholder="Province" class="form-control" style="width:50%" />
+                <input type="number" name="zip" placeholder="Zip Code" class="form-control" style="width:50%" />
+
+                @Html.ValidationMessageFor(model => model.PostalAd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HomeAd, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="add1" placeholder="Address" class="form-control" style="width:50%" />
+                <input type="text" name="city1" placeholder="City" class="form-control" style="width:50%" />
+                <input type="text" name="prov1" placeholder="Province" class="form-control" style="width:50%" />
+                <input type="number" name="zip1" placeholder="Zip Code" class="form-control" style="width:50%" />
+
+                @Html.ValidationMessageFor(model => model.HomeAd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HomeNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.HomeNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HomeNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    }
+    <hr />
+</div>

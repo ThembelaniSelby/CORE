@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>@ViewBag.Title - Studentcore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Footer-with-button-logo.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar">
+        <a class="active" href="/"><i class="fa fa-fw fa-home"></i>Home</a>
+
+        @if (Request.IsAuthenticated && User.IsInRole("Learner"))
+        {
+            <a href="/child/accademic?id=@Html.Action("GetCid","Child")"><i class="fa fa-plus-circle"></i>Accademic</a>
+
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("User"))
+        {
+            <a href="/account/mychildren"><i class="fa fa-plus-circle"></i>Add Child</a>
+            <a href="/account/mychildren"><i class="fa fa-meetup"></i>My Child or Children</a>
+
+            @*<a href="/account/content"><i class="fa fa-list"></i>Accademic</a>*@
+        }
+
+        @if (Request.IsAuthenticated)
+        {
+            <a href="/account/logout"><i class="fa fa-unlock"></i>Logout </a>
+        }
+        @if (Request.IsAuthenticated)
+        {
+            <a href="/account/user-profile"><i class="fa fa-user"></i>@User.Identity.Name </a>
+        }
+        else
+        {
+            <a href="/account/Login"><i class="fa fa-fw fa-user"></i> Login</a>
+
+        }
+
+        @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <div class="navbar-collapse collapse navbar-right adminarea">
+                <button m type="button" class="btn btn-success" title='Click To Go to Stock Controllers Area' style="height:48px;background-color:black" onclick="window.location.href='/Admin/Admin/Index'">ADMIN PORTAL</button>
+            </div>
+        }
+        @if (Request.IsAuthenticated && User.IsInRole("Teacher"))
+        {
+            <div class="navbar-collapse collapse navbar-right adminarea">
+                <button m type="button" class="btn btn-success" title='Click To Go to Stock Controllers Area' style="height:48px;background-color:black" onclick="window.location.href='/TEACHER/Index'">TEACHER PORTAL</button>
+            </div>
+        }
+
+
+
+        </div>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: grey;
+            overflow: auto;
+        }
+
+            .navbar a {
+                float: left;
+                padding: 12px;
+                color: white;
+                text-decoration: none;
+                font-size: 17px;
+            }
+
+                .navbar a:hover {
+                    background-color: #000;
+                }
+
+        .active {
+            background-color: black;
+        }
+
+        .button {
+            background-color: black; /* Green */
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 100px;
+        }
+
+        .button1 {
+            font-size: 10px;
+        }
+    </style>
+
+
+
+
+    <div class="container body-content">
+        <div class="row">
+            @RenderBody()
+        </div>
+
+        @*Start Footer*@
+
+
+        <footer id="myFooter" style="background-color:darkgray;">
+            <div class="container" style="color:blue">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h2 class="logo" style="color:blue"><a href="/" style="color:blue"> HOME </a></h2>
+                    </div>
+
+                    <div class="col-sm-2" style="color:blue">
+                        <h5 style="color:navy">About us</h5>
+                        <ul style="color:blue">
+                            <li><a href="/" style="color:blue">Company Information</a></li>
+                            <li><a href="/" style="color:blue">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>© @System.DateTime.Now.Year Copyright Student core </p>
+            </div>
+        </footer>
+
+
+        @*End Fotter*@
+    </div>
+
+
+    <!-- Start Back Top -->
+
+    <div id="back-top">
+        <i class="fa fa-angle-up"></i>
+    </div>
+
+    <!-- End Back Top -->
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/SiteJs.js"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+
+
+
+
+

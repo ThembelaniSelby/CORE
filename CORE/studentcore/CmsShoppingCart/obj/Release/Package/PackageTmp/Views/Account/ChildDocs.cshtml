@@ -1,0 +1,35 @@
+﻿@model CmsShoppingCart.Models.ViewModels.Account.ChildVM
+
+@{
+    ViewBag.Title = "ChildDocs";
+    Layout = null;
+}
+<body>
+    @foreach (var image in Model.GalleryImages)
+    {
+        <div class="scroll" style="display:inline-block">
+
+            @if (image.ToString().Contains(".pdf") == true)
+            {
+                <a href="/Images/Docs/Docs/@Model.Id/@image">
+                    <div align="center">
+                        <img src="~/Images/pdficon.png" style="width:200px; height:200px;" frameborder="0" allowfullscreen>
+                        <br />
+                        @image
+                    </div>
+
+                </a>
+            }
+            else
+            {
+                <a href="/Images/Docs/Docs/@Model.Id/@image">
+                    <div align="center">
+                        <img src="/Images/Docs/Docs/@Model.Id/@image" style="width:200px; height:200px;" frameborder="0" allowfullscreen>
+                        <br />
+                        @image
+                    </div>
+                </a>
+            }
+        </div>
+    }
+</body>

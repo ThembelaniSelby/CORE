@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CmsShoppingCartModelStoreContainer" CdmEntityContainer="CmsShoppingCartEntities">
+    <EntitySetMapping Name="tblCategories">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblCategory">
+        <MappingFragment StoreEntitySet="tblCategories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Slug" ColumnName="Slug" />
+          <ScalarProperty Name="Sorting" ColumnName="Sorting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblComments">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblComment">
+        <MappingFragment StoreEntitySet="tblComments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Sorting" ColumnName="Sorting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOrderDetails">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblOrderDetail">
+        <MappingFragment StoreEntitySet="tblOrderDetails">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblOrders">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblOrder">
+        <MappingFragment StoreEntitySet="tblOrders">
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblPages">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblPage">
+        <MappingFragment StoreEntitySet="tblPages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Slug" ColumnName="Slug" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+          <ScalarProperty Name="Sorting" ColumnName="Sorting" />
+          <ScalarProperty Name="HasSidebar" ColumnName="HasSidebar" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProducts">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblProduct">
+        <MappingFragment StoreEntitySet="tblProducts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Slug" ColumnName="Slug" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblReplies">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblReply">
+        <MappingFragment StoreEntitySet="tblReply">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Reply" ColumnName="Reply" />
+          <ScalarProperty Name="CommentId" ColumnName="CommentId" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblRoles">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblRole">
+        <MappingFragment StoreEntitySet="tblRoles">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblSidebars">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblSidebar">
+        <MappingFragment StoreEntitySet="tblSidebar">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Body" ColumnName="Body" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblStaffs">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblStaff">
+        <MappingFragment StoreEntitySet="tblStaffs">
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Confirm" ColumnName="Confirm" />
+          <ScalarProperty Name="StaffRole" ColumnName="StaffRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTrips">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblTrip">
+        <MappingFragment StoreEntitySet="tblTrip">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="TruckId" ColumnName="TruckId" />
+          <ScalarProperty Name="Drivers" ColumnName="Drivers" />
+          <ScalarProperty Name="Stock_Controller" ColumnName="Stock_Controller" />
+          <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
+          <ScalarProperty Name="Destination" ColumnName="Destination" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblTrucks">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblTruck">
+        <MappingFragment StoreEntitySet="tblTrucks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NumberPlate" ColumnName="NumberPlate" />
+          <ScalarProperty Name="Dimention" ColumnName="Dimention" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserRoles">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblUserRole">
+        <MappingFragment StoreEntitySet="tblUserRoles">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="CmsShoppingCartModel.tblUser">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

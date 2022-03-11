@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Slot>
+
+@{
+    Layout = null;
+}
+
+<div style="background-color:RED;display:inline-block">
+    <div class="card" align="center" style="display:inline-block">
+
+        <h5 class="namee" style="text-transform:uppercase;color:white;font-size:20px">  10:00 - 11:00</h5>
+        <div style="width:100px;height:115px;font-size:72pt;color:white">
+            B
+        </div>
+
+        <div style="background-color:white;height:2px"></div>
+    </div>
+</div>
+@foreach (var item in Model)
+{
+    <div style="background-color:@item.ThemeColor;display:inline-block">
+        <div class="card" align="center" style="display:inline-block">
+
+            <h5 class="namee" style="text-transform:uppercase;color:white;font-size:20px">  @item.Start - @item.End</h5>
+            <div style="height:50px;" class="cardconten" align="center">
+                <h5 style="text-transform:uppercase;color:white">  @item.Subject</h5>
+                <h6 style="text-transform:uppercase;color:white">  @item.Description</h6>
+
+            </div>
+
+            <p class="price" style="color:white">@item.TeacherName</p>
+            @Html.ActionLink("Edit", "EditSlot", new { id = item.Id }, new { @class = "btn btn-success" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+            <div style="background-color:white;height:2px"></div>
+        </div>
+    </div>
+}

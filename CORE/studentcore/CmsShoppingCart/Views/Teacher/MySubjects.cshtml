@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Subjectteacher>
+
+@{
+    ViewBag.Title = "MySubjects";
+    Layout = null;
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-error">
+        @TempData["Error"]
+    </div>
+}
+<h2>My Subjects</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Subject Name
+        </th>
+        <th>
+            Subject Name(LOWER)
+        </th>
+        <th>
+            Grade
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubjectNameFix)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GradeName)
+        </td>
+        
+        <td>
+            <a href="/teacher/addassessment?subject=@item.SubjectNameFix&grade=@item.GradeNumber" class="btn btn-success">ADD ASSESSMENT</a>|
+            <a href="/teacher/assessments?subject=@item.SubjectNameFix&grade=@item.GradeNumber" class="btn btn-success">ASSESSMENTS</a>|
+            @Html.ActionLink("TRACK PROGRESS", "TrackProgress", new { id = item.Id }, new { @class = "btn btn-success" }) |
+        </td>
+    </tr>
+}
+
+</table>

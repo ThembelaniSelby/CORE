@@ -1,0 +1,49 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Gradesubject>
+
+@{
+    ViewBag.Title = "Accademic";
+}
+
+<h2>Accademic</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Subject Key
+        </th>
+        <th>
+            Subject Name
+        </th>
+        <th>
+            Subject Name(LOWER)
+        </th>
+
+        <th>
+            Grade Name
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subid)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectNameFix)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeName)
+            </td>
+
+            
+        </tr>
+    }
+
+</table>

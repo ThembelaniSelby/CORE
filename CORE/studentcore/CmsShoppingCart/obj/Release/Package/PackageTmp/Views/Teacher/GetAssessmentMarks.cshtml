@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.AssessmentMark>
+
+@{
+    ViewBag.Title = "GetAssessmentMarks";
+}
+
+<h2>Assessment Marks</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Learner Email
+        </th>
+        <th>
+            Status
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mark)
+        </th>
+        <th>
+            Contribution in Year Mark
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LearnerName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Statust)
+        </td>
+        <td>
+            @ViewBag.Tot\
+            @Html.DisplayFor(modelItem => item.Mark)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PercentOf100)
+        </td>
+       
+    </tr>
+ 
+
+}
+
+</table>
+<div align ="center">
+    <a href="/Teacher/ApproveMarks?id=@ViewBag.id" class="btn btn-info">APPROVE MARKS</a>
+</div>
+<br />

@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "submitassessment";
+}
+@if (ViewBag.Status== "ASSESSMENT SUBMITED")
+{
+    <div align="center" style="color:black;height:350px">
+        <h3>ASSESSMENT SUBMITED</h3>
+        <br />
+        <br />
+    </div>
+}
+
+@if (ViewBag.Status== "CHEATED")
+{
+    <div align="center" style="color:red;height:350px">
+        <h1>
+            CHEATED ON ASSESSMENT SESSION
+        </h1>
+        <br />
+        <br />
+    </div>
+}
+

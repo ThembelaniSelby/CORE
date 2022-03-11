@@ -1,0 +1,144 @@
+﻿@model IEnumerable<CmsShoppingCart.Models.Data.Child>
+
+@{
+    ViewBag.Title = "MyChildren";
+}
+
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    body {
+        background-color: lightgray;
+    }
+
+    .rectangle {
+        background-color: darkgrey;
+    }
+
+    .categ {
+        width: 200px;
+        background-color: red;
+    }
+
+    .rectitle {
+        background-color: darkgoldenrod;
+    }
+
+    .button {
+        background-color: black; /* Green */
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 100px;
+    }
+
+        .button:hover {
+            background-color: black;
+        }
+
+
+    .button1 {
+        font-size: 10px;
+    }
+</style>
+<body>
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-error">
+        @TempData["Error"]
+    </div>
+}
+    <h2>MyChildren</h2>
+
+    <p>
+        <a href="/account/Addchild" class="btn btn-success">ADD CHILD</a>
+
+        <a href="/account/Derigester" class="btn btn-success">DEREGISTER A CHILD</a>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChildEmail)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.IdNumb)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ChildEmail)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdNumb)
+                </td>
+                <td>
+                    @Html.ActionLink("PROFILE", "ChildProfile", new { id = item.Id }, new { @class = "btn btn-success" })|
+                    @if (item.Status == "APPROVED")
+                    {
+                        @Html.ActionLink("REGISTER", "Register", new { id = item.Id }, new { @class = "btn btn-success" })
+                    }
+                    @if (item.Status == "REGISTERED")
+                    {
+                        <a href="/Account/Accademic?id=@item.Id" class="btn btn-info">ACCADEMIC</a>
+                    }
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+</body>

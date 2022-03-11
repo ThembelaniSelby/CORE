@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="IWAYZEE" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\THEMBELANI\\Downloads\\IWAYZE\\CmsShoppingCart\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\THEMBELANI\\Downloads\\IWAYZE\\CmsShoppingCart\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="Add write permission to App_Data Folder" description="Add write permission to App_Data folder" value="IWAYZEE/App_Data" tags="Hidden">
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\THEMBELANI\\Downloads\\IWAYZE\\CmsShoppingCart\\obj\\Release\\Package\\PackageTmp\\App_Data$" />
+  </parameter>
+  <parameter name="CmsShoppingCart.Models.Data.Db-Web.config Connection String" description="" value="Data Source=iwayzetdbserver.database.windows.net;Initial Catalog=IWAYZEEDB;User ID=TECHTSBY;Password=&quot;TsELB,;?y2&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\THEMBELANI\\Downloads\\IWAYZE\\CmsShoppingCart\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='CmsShoppingCart.Models.Data.Db']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,52 @@
+﻿@model CmsShoppingCart.Models.Data.QuestionPosibleAnswer
+
+@{
+    ViewBag.Title = "Incorect Answer";
+}
+
+
+<div style="color:black">
+    @ViewBag.Q
+</div>
+<br />
+<br />
+<h2>Incorect Answer</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+                <input type="number" name="AssessmentId" class="form-control" value="@ViewBag.Assid" readonly style="display:none" />
+              
+                <input type="number" name="QuestionId" class="form-control" value="@ViewBag.Qid" readonly style="display:none" />
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Subject" class="form-control" value="@ViewBag.Subject" readonly />
+
+                @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,95 @@
+﻿@model CmsShoppingCart.Models.Data.Quotation
+
+@{
+    ViewBag.Title = "GetQuotation";
+}
+<style>
+    input[type=checkbox] {
+        margin-top: 10px;
+        margin-right: 20px;
+    }
+</style>
+<h2>Get-Quotation</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AfterHours, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="checkbox" width="20" height="20" value="YES" name="AfterHours" />
+                <input type="text" value=@ViewBag.Aft readonly />
+
+                @Html.ValidationMessageFor(model => model.AfterHours, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="checkbox" value="YES" name="Delivery" />
+                <input type="text" value=@ViewBag.Del readonly />
+
+                @Html.ValidationMessageFor(model => model.Delivery, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Uniform, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="checkbox" value="YES" name="Uniform" />
+                <input type="text" value=@ViewBag.Sta readonly />
+
+                @Html.ValidationMessageFor(model => model.Uniform, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Stationary, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="checkbox" name="Stationary" value="YES" />
+                <input type="text" value=@ViewBag.Uni readonly />
+
+                @Html.ValidationMessageFor(model => model.Stationary, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Event_sports, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="checkbox" name="Event_sports" value="YES" />
+                <input type="text" value=@ViewBag.Ev readonly />
+
+                @Html.ValidationMessageFor(model => model.Event_sports, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Feeding_scheme, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="checkbox" name="Feeding_scheme" value="YES" />
+                <input type="text" value=@ViewBag.Fe readonly />
+                @Html.ValidationMessageFor(model => model.Feeding_scheme, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="GET QUOTATION" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    <h4>TOTAL: R @ViewBag.Total</h4>
+    <a href="/Account/SubmitApplication?id=@ViewBag.Id" class="btn btn-success">SUBMIT APPLICATION</a>
+    <hr />
+    
+}
+
+

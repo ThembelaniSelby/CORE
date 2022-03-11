@@ -1,0 +1,62 @@
+﻿@model CmsShoppingCart.Models.Data.SlotVM
+
+@{
+    ViewBag.Title = "EditSlot"; Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h4>Edit Slot</h4>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+       
+
+        <div class="form-group">
+            @Html.Label("Theme Color", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="ThemeColor" class="form-control">
+                    <option value="BLACK">SELECT COLOR</option>
+                    <option value="RED">RED</option>
+                    <option value="BLUE">BLUE</option>
+                    <option value="GREEN">GREEN</option>
+                    <option value="ORANGE">ORANGE</option>
+                    <option value="GOLD">GOLD</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">SUBJECT</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.subjectTeacherId, Model.SUBJECTS,"SELECT SUBJECT", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SUBJECTS, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="Description" class="form-control">
+                    <option value="CLASS">SELECT DESCRIPTION</option>
+                    <option value="CLASS">CLASS</option>
+                    <option value="TUTORIAL">TUTORIAL</option>
+                    <option value="PRACTICAL">PRACTICAL</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="UPDATE" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

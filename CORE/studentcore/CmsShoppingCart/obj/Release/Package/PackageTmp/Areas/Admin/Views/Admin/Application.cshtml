@@ -1,0 +1,153 @@
+﻿@model CmsShoppingCart.Models.Data.Child
+
+@{
+    ViewBag.Title = "Application";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<style>
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    body {
+        background-color: lightgray;
+    }
+
+    .rectangle {
+        background-color: darkgrey;
+    }
+
+    .categ {
+        width: 200px;
+        background-color: red;
+    }
+
+    .rectitle {
+        background-color: darkgoldenrod;
+    }
+
+    .button {
+        background-color: black; /* Green */
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 100px;
+    }
+
+        .button:hover {
+            background-color: black;
+        }
+
+
+    .button1 {
+        font-size: 10px;
+    }
+</style>
+<body>
+    <div style="margin-left:20px">
+        <h2>Applicatin- Details</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    APPLICATION INFORMATION
+                </th>
+                <th>
+                    APPLICATION DOCS
+                </th>
+            </tr>
+
+            <td>
+
+                <div>
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.FirstName)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DateOfBirth)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.DateOfBirth)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.ChildEmail)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.ChildEmail)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Gender)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Gender)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Grade)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Grade)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.IdNumb)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.IdNumb)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Password)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Password)
+                        </dd>
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.Date)
+                        </dd>
+
+                    </dl>
+                </div>
+
+            </td>
+            <td>
+                @Html.Action("Details", "Admin")
+            </td>
+        </table>
+        @if (Model.Status != "REGISTERED")
+        {
+
+            <a href="/Admin/Admin/ApproveApplication/@Model.Id" class="btn btn-success" style="width:100%">APPROVE APPLICATION</a>
+            <hr />
+            <a href="/Admin/Admin/RejectApplication/@Model.Id" class="btn btn-danger" style="width:100%">REJECT APPLICATION</a>
+        }
+
+
+
+    </div>
+</body>

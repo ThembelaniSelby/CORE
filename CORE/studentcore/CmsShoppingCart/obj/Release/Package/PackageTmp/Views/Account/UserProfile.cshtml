@@ -1,0 +1,116 @@
+﻿@model CmsShoppingCart.Models.ViewModels.Account.UserProfileVM
+
+@{
+    ViewBag.Title = "User Profile";
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        body {
+            background-color: lightgray;
+        }
+
+        .rectangle {
+            background-color: darkgray;
+        }
+
+        .categ {
+            width: 200px;
+            background-color: red;
+        }
+
+        .rectitle {
+            background-color: darkgrey;
+        }
+
+        .button {
+            background-color: black; /* Green */
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            width: 100px;
+        }
+
+            .button:hover {
+                background-color: black;
+            }
+
+
+        .button1 {
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<div class="rectangle" style="margin-top:-8px; margin-left:50px;padding-right:12px;color:white;">
+    <div class="rectitle" style="height:30px">
+        <div align="center"><h3>User Profile</h3> </div>
+    </div>
+    @if (TempData["Success Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Success Message"]
+        </div>
+    }
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            <div class="form-group">
+                <label class="control-label col-md-2" for="HasSidebar">First Name</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="HasSidebar">Last Name</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="HasSidebar">Email</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+           
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="HasSidebar">Confirm Password</label>
+                <div class="col-md-10">
+                    @Html.PasswordFor(model => model.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Edit Profile" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>

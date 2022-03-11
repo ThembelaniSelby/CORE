@@ -1,0 +1,40 @@
+﻿@model CmsShoppingCart.Models.Data.DelVM
+
+@{
+    ViewBag.Title = "Derigester";
+}
+
+<h2>Derigester</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>DelVM</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2" for="HasSidebar">My Children</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.LearnerId, Model.MyChildren, "Select Child", new { @class = "form-control" })
+                @Html.ValidationMessage("Please Select a Child", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Reason, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Reason, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Reason, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="SUBMIT" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

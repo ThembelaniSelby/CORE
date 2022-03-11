@@ -1,0 +1,111 @@
+﻿@model CmsShoppingCart.Models.Data.Child
+
+@{
+    ViewBag.Title = "AddChild";
+}
+<body style=" background-color: lightgray;">
+
+    <h2>Apply/New Child</h2>
+
+    @using (Html.BeginForm("AddChild", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="FirstName" required class="form-control" style="width:50%" />
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="LastName" required class="form-control" style="width:50%" />
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChildEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="ChildEmail" required class="form-control" style="width:50%" />
+                @Html.ValidationMessageFor(model => model.ChildEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="password" name="Password" required class="form-control" style="width:50%" />
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="datetime-local" name="DateOfBirth" value="@DateTime.UtcNow.AddHours(2)" class="form-control" style="width:50%" />
+                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdNumb, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="number" name="IdNumb" minlength=13 maxlength=13 required value=0000000000000 class="form-control" style="width:50%" />
+                @Html.ValidationMessageFor(model => model.IdNumb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdNumb, "Grade Applying For:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="number" name="grade" min=1 max=12 value=1 class="form-control" style="width:50%" />
+                @Html.ValidationMessageFor(model => model.IdNumb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdNumb, "Last Report Card", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="lastreportcard" required />
+                @Html.ValidationMessageFor(model => model.IdNumb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdNumb, "Learner Certificate", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="certificate" required />
+                @Html.ValidationMessageFor(model => model.IdNumb, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LearnerPic, "Learner Picture", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="learnerpic" required />
+                @Html.ValidationMessageFor(model => model.LearnerPic, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="SUBMIT APPLICATION" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    }
+
+    </body>

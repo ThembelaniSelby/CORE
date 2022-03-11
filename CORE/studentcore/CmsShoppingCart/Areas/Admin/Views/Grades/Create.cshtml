@@ -1,0 +1,35 @@
+﻿@model CmsShoppingCart.Models.Data.Grade
+
+@{
+    ViewBag.Title = "Create"; Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>ADD GRADE</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+        <div class="form-group">
+            @Html.Label("Grade:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="number" min=1 max=12 class="form-control" name="Number" />
+                @Html.ValidationMessageFor(model => model.Number, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ADD GRADE" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Grades", "Index")
+</div>
